@@ -12,232 +12,82 @@
     <div id="math-level"></div>
     <div id="math-progress"></div>
     <div id="math-question"></div>
-             
+    <div id="lives"></div>
     <div id="math-answers"></div>
 
     <button onclick="startMath()">🔄 Начать заново</button>
-
+    <div style="width:100%;background:#ddd;height:10px;border-radius:5px;">
+      <div id="progress-bar" style="height:10px;background:#4caf50;width:0%;border-radius:5px;"></div>
+    </div>
     <div id="math-result"></div>
   </section>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial;
-      background: #f0f0f0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      color: white;
+      margin-top: 20px;
     }
 
     nav {
-      margin-bottom: 20px;
+      margin: 20px;
     }
 
+    /* КНОПКИ ВКЛАДОК */
     button.tab {
-      padding: 10px 20px;
-      margin-right: 5px;
-      cursor: pointer;
-      background: #2196f3;
-      color: #fff;
+      padding: 12px 25px;
+      margin: 5px;
+      font-size: 18px;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
+      background: white;
+      color: #2196f3;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
     button.tab:hover {
-      background: #1976d2;
+      background: #2196f3;
+      color: white;
+      transform: scale(1.05);
     }
 
+    /* СЕКЦИИ */
     section {
       display: none;
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
 
     section.active {
       display: block;
     }
 
-    #question {
-      font-size: 1.2em;
-      margin-bottom: 15px;
-    }
-
-    #answers {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .answer {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      background: #fff;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .answer.correct {
-      background: #4caf50;
-      color: #fff;
-    }
-
-    .answer.wrong {
-      background: #f44336;
-      color: #fff;
-    }
-
-    #result {
-      font-weight: bold;
-      min-height: 20px;
-      margin-bottom: 10px;
-    }
-
-    #progress {
-      margin-bottom: 10px;
-    }
-
-    #tic-tac-toe {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      gap: 5px;
-      margin-top: 20px;
-    }
-
-    .ttt-cell {
-      width: 100px;
-      height: 100px;
-      background: #fff;
-      border: 1px solid #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2em;
-      cursor: pointer;
-    }
-
-    .ttt-cell.win {
-      background: #4caf50;
-      color: #fff;
-    }
-
-    #ttt-result {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      margin: 0;
-      padding: 20px;
-    }
-
-    /* Кнопки вкладок */
-    button.tab {
-      padding: 16px 34px;
-      margin: 6px;
-      cursor: pointer;
-      background: linear-gradient(135deg, #4facfe, #2196f3);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      transition: 0.3s;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    button.tab:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Кнопки ответов */
-    .answer {
-      display: block;
-      width: 100%;
-      max-width: 400px;
-      margin: 10px auto;
-      padding: 16px;
-      font-size: 18px;
-      border-radius: 10px;
-      border: none;
-      background: #ffffff;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .answer:hover {
-      background: #e3f2fd;
-      transform: scale(1.03);
-    }
-
-    /* Правильный / неправильный ответ */
-    .correct {
-      background: #4caf50 !important;
-      color: white;
-    }
-
-    .wrong {
-      background: #f44336 !important;
-      color: white;
-    }
-
-    /* Общие кнопки */
-    button {
-      font-size: 18px;
-      padding: 14px 24px;
-      border-radius: 10px;
-    }
-
-    /* Контент */
-    section {
-      margin-top: 20px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Текст вопросов */
+    /* ВОПРОС */
     #question,
     #math-question {
       font-size: 22px;
       margin-bottom: 15px;
+      font-weight: bold;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #f5f7fb);
-      margin: 0;
-      padding: 20px;
-    }
-
-    section {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    button.tab {
-      padding: 15px 30px;
-      margin: 5px;
-      font-size: 18px;
-      border-radius: 10px;
-      border: none;
-      background: linear-gradient(135deg, #2196f3, #4facfe);
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button.tab:hover {
-      transform: scale(1.05);
-    }
-
-    /* Варианты ответов */
+    /* ОТВЕТЫ */
     .answer {
       display: block;
       width: 100%;
@@ -246,15 +96,14 @@
       font-size: 18px;
       border-radius: 10px;
       border: none;
-      background: #ffffff;
+      background: #f1f1f1;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .answer:hover {
-      transform: scale(1.03);
       background: #e3f2fd;
+      transform: scale(1.03);
     }
 
     .correct {
@@ -267,23 +116,72 @@
       color: white;
     }
 
-    #math-question {
-      font-size: 22px;
-      margin: 20px 0;
+    /* ПРОГРЕСС */
+    #progress,
+    #math-progress {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
     }
 
-    #math-progress,
-    #math-level {
+    /* КРЕСТИКИ-НОЛИКИ */
+    #tic-tac-toe {
+      display: grid;
+      grid-template-columns: repeat(3, 90px);
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .ttt-cell {
+      width: 90px;
+      height: 90px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .ttt-cell:hover {
+      background: #e3f2fd;
+    }
+
+    .ttt-cell.win {
+      background: #4caf50;
+      color: white;
+    }
+
+    #ttt-result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* КНОПКА СТАРТА */
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
       font-size: 16px;
-      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #2196f3;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    button.answer {
-      width: 100%;
-      padding: 20px;
-      font-size: 20px;
-      margin: 10px 0;
-      border-radius: 12px;
+    button:hover {
+      background: #1976d2;
+    }
+
+    .selected {
+      background: orange !important;
+      color: black !important;
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -309,14 +207,21 @@
   </section>
 
   <script>
+    let lives = 3;
     let correctMath = 0;
     let totalMath = 0;
     // ===== Навигация по вкладкам =====
+    function updateProgress() {
+  let percent = (current / questions.length) * 100;
+  document.getElementById("progress-bar").style.width = percent + "%";
+}
     function showTab(tabId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
     }
-
+    function updateLives() {
+      document.getElementById("lives").textContent = "❤️".repeat(lives);
+    }
     // ===== 100 Логических вопросов =====
     const allQuestions = [
       // УРОВЕНЬ 1
@@ -452,9 +357,44 @@
       document.getElementById("progress").textContent = `Вопрос ${current + 1} из ${questions.length}`; document.getElementById("result").textContent = "";
     }
     function checkAnswer(i, btn) {
-      const q = questions[current]; Array.from(document.getElementById("answers").children).forEach((b, idx) => { b.disabled = true; if (idx === q.c) b.classList.add("correct"); else if (idx === i) b.classList.add("wrong"); });
-      const result = document.getElementById("result"); if (i === q.c) { score++; result.textContent = "✅ Правильно"; } else result.textContent = "❌ Неправильно";
-      current++; setTimeout(() => { if (current < questions.length) loadQuestion(); else nextLevel(); }, 700);
+      const q = questions[current];
+
+      const buttons = document.getElementById("answers").children;
+
+      // подсветка выбранного ответа (ОРАНЖЕВЫЙ)
+      btn.classList.add("selected");
+
+      // отключаем все кнопки
+      for (let b of buttons) b.disabled = true;
+
+      setTimeout(() => {
+        // показываем правильный/неправильный
+        Array.from(buttons).forEach((b, idx) => {
+          if (idx === q.c) b.classList.add("correct");
+          else if (idx === i) b.classList.add("wrong");
+        });
+
+
+        const result = document.getElementById("result");
+
+        if (i === q.c) {
+          score++;
+          result.textContent = "✅ Правильно";
+        } else {
+          result.textContent = "❌ Неправильно";
+        }
+
+        current++;
+
+        setTimeout(() => {
+          if (current < questions.length) {
+            loadQuestion();
+          } else {
+            nextLevel();
+          }
+        }, 700);
+
+      }, 300);
     }
     function nextLevel() {
       level++; if (level > 10) { document.getElementById("question").textContent = "🏆 Викторина завершена!"; document.getElementById("answers").innerHTML = ""; document.getElementById("result").textContent = "Результат: " + score; document.getElementById("progress").textContent = ""; return; }
@@ -581,7 +521,7 @@
       const buttons = document.getElementById("math-answers").children;
       for (let b of buttons) b.disabled = true;
 
-    if(btn.textContent == q.a[q.c]) {
+      if (btn.textContent == q.a[q.c]) {
         mathScore++;
         btn.classList.add("correct");
       } else {
@@ -603,7 +543,7 @@
     function nextMathLevel() {
       mathLevel++;
 
-    
+
       mathCurrent = 0;
       mathList = shuffle(mathQuestions).filter(q => q.l === mathLevel).slice(0, 10);
       loadMath();
@@ -638,7 +578,16 @@
       }
       return array;
     }
+    function botMove() {
+      let empty = board.map((v, i) => v == "" ? i : null).filter(v => v !== null);
+      let move = empty[Math.floor(Math.random() * empty.length)];
 
+      if (move !== undefined) {
+        let cell = document.querySelectorAll(".ttt-cell")[move];
+        board[move] = turn;
+        cell.textContent = turn;
+      }
+    }
     // перемешка ответов
     function shuffleAnswers(question) {
       let correct = question.a[question.c];
@@ -660,7 +609,7 @@
     function nextMathLevel() {
       mathLevel++;
 
-    
+
       function shuffleAnswers(question) {
         let answers = question.a.map((text, index) => ({
           text,
@@ -733,8 +682,8 @@
           `Вопрос ${mathCurrent + 1} из ${mathList.length}`;
       }
     }
-  
-  
+
+
   </script>
 
 </body>
