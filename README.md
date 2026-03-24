@@ -12,7 +12,7 @@
     <div id="math-level"></div>
     <div id="math-progress"></div>
     <div id="math-question"></div>
-
+             
     <div id="math-answers"></div>
 
     <button onclick="startMath()">🔄 Начать заново</button>
@@ -484,67 +484,68 @@
   <script>
     // ===== МАТЕМАТИЧЕСКИЕ ВОПРОСЫ (100 ШТУК, 10 УРОВНЕЙ) =====
     const mathQuestions = [
-      // УРОВЕНЬ 1
-      { q: "1 + 1 = ?", a: ["1", "2", "3"], c: 1, l: 1 },
-      { q: "2 + 2 = ?", a: ["3", "4", "5"], c: 1, l: 1 },
-      { q: "3 + 1 = ?", a: ["3", "4", "5"], c: 1, l: 1 },
-      { q: "5 - 2 = ?", a: ["2", "3", "4"], c: 1, l: 1 },
-      { q: "6 - 3 = ?", a: ["2", "3", "4"], c: 1, l: 1 },
-      { q: "2 + 3 = ?", a: ["4", "5", "6"], c: 1, l: 1 },
-      { q: "7 - 5 = ?", a: ["1", "2", "3"], c: 1, l: 1 },
-      { q: "4 + 1 = ?", a: ["4", "5", "6"], c: 1, l: 1 },
-      { q: "8 - 6 = ?", a: ["1", "2", "3"], c: 1, l: 1 },
-      { q: "2 + 5 = ?", a: ["6", "7", "8"], c: 1, l: 1 },
 
-      // УРОВЕНЬ 2
-      { q: "10 - 4 = ?", a: ["5", "6", "7"], c: 1, l: 2 },
-      { q: "3 × 2 = ?", a: ["5", "6", "7"], c: 1, l: 2 },
-      { q: "8 ÷ 2 = ?", a: ["3", "4", "5"], c: 1, l: 2 },
-      { q: "7 + 2 = ?", a: ["8", "9", "10"], c: 1, l: 2 },
-      { q: "9 - 3 = ?", a: ["5", "6", "7"], c: 1, l: 2 },
-      { q: "2 × 4 = ?", a: ["6", "8", "10"], c: 1, l: 2 },
-      { q: "6 ÷ 3 = ?", a: ["1", "2", "3"], c: 1, l: 2 },
-      { q: "5 + 5 = ?", a: ["9", "10", "11"], c: 1, l: 2 },
-      { q: "12 - 5 = ?", a: ["6", "7", "8"], c: 1, l: 2 },
-      { q: "4 × 2 = ?", a: ["6", "8", "10"], c: 1, l: 2 },
+      // ===== УРОВЕНЬ 1 =====
+      { q: "1 + 1 = ?", a: ["3", "2", "4"], c: 1, l: 1 },
+      { q: "2 + 3 = ?", a: ["6", "4", "5"], c: 2, l: 1 },
+      { q: "4 - 1 = ?", a: ["3", "2", "5"], c: 0, l: 1 },
+      { q: "5 - 3 = ?", a: ["3", "1", "2"], c: 2, l: 1 },
+      { q: "3 + 2 = ?", a: ["4", "6", "5"], c: 2, l: 1 },
+      { q: "6 - 4 = ?", a: ["3", "2", "1"], c: 1, l: 1 },
+      { q: "2 + 6 = ?", a: ["8", "9", "7"], c: 0, l: 1 },
+      { q: "7 - 5 = ?", a: ["3", "2", "1"], c: 1, l: 1 },
+      { q: "3 + 4 = ?", a: ["7", "6", "8"], c: 0, l: 1 },
+      { q: "8 - 3 = ?", a: ["6", "5", "4"], c: 1, l: 1 },
 
-      // УРОВЕНЬ 3
-      { q: "15 - 7 = ?", a: ["6", "7", "8"], c: 2, l: 3 },
-      { q: "3 × 4 = ?", a: ["10", "11", "12"], c: 2, l: 3 },
-      { q: "20 ÷ 5 = ?", a: ["3", "4", "5"], c: 1, l: 3 },
-      { q: "9 + 6 = ?", a: ["14", "15", "16"], c: 1, l: 3 },
-      { q: "18 - 9 = ?", a: ["8", "9", "10"], c: 1, l: 3 },
-      { q: "6 × 3 = ?", a: ["16", "18", "20"], c: 1, l: 3 },
-      { q: "24 ÷ 6 = ?", a: ["3", "4", "5"], c: 1, l: 3 },
-      { q: "7 + 8 = ?", a: ["14", "15", "16"], c: 1, l: 3 },
-      { q: "13 - 6 = ?", a: ["6", "7", "8"], c: 1, l: 3 },
-      { q: "5 × 5 = ?", a: ["20", "25", "30"], c: 1, l: 3 },
+      // ===== УРОВЕНЬ 2 =====
+      { q: "10 - 4 = ?", a: ["7", "5", "6"], c: 2, l: 2 },
+      { q: "3 × 3 = ?", a: ["9", "6", "12"], c: 0, l: 2 },
+      { q: "8 ÷ 2 = ?", a: ["5", "4", "3"], c: 1, l: 2 },
+      { q: "9 + 1 = ?", a: ["10", "11", "9"], c: 0, l: 2 },
+      { q: "12 - 5 = ?", a: ["6", "8", "7"], c: 2, l: 2 },
+      { q: "4 × 3 = ?", a: ["12", "10", "14"], c: 0, l: 2 },
+      { q: "6 ÷ 3 = ?", a: ["3", "2", "1"], c: 1, l: 2 },
+      { q: "7 + 5 = ?", a: ["11", "13", "12"], c: 2, l: 2 },
+      { q: "15 - 7 = ?", a: ["9", "8", "7"], c: 1, l: 2 },
+      { q: "5 × 2 = ?", a: ["10", "12", "8"], c: 0, l: 2 },
 
-      // УРОВЕНЬ 4
-      { q: "12 × 2 = ?", a: ["22", "24", "26"], c: 1, l: 4 },
-      { q: "36 ÷ 6 = ?", a: ["5", "6", "7"], c: 1, l: 4 },
-      { q: "14 + 9 = ?", a: ["22", "23", "24"], c: 1, l: 4 },
-      { q: "25 - 8 = ?", a: ["16", "17", "18"], c: 1, l: 4 },
-      { q: "7 × 3 = ?", a: ["20", "21", "22"], c: 1, l: 4 },
-      { q: "40 ÷ 5 = ?", a: ["6", "7", "8"], c: 2, l: 4 },
-      { q: "18 + 7 = ?", a: ["24", "25", "26"], c: 1, l: 4 },
-      { q: "30 - 12 = ?", a: ["16", "18", "20"], c: 1, l: 4 },
-      { q: "9 × 4 = ?", a: ["32", "36", "40"], c: 1, l: 4 },
-      { q: "16 ÷ 4 = ?", a: ["3", "4", "5"], c: 1, l: 4 },
+      // ===== УРОВЕНЬ 3 =====
+      { q: "14 + 6 = ?", a: ["22", "20", "18"], c: 1, l: 3 },
+      { q: "18 - 9 = ?", a: ["9", "11", "7"], c: 0, l: 3 },
+      { q: "6 × 4 = ?", a: ["24", "20", "28"], c: 0, l: 3 },
+      { q: "20 ÷ 5 = ?", a: ["5", "4", "3"], c: 1, l: 3 },
+      { q: "9 × 3 = ?", a: ["30", "27", "24"], c: 1, l: 3 },
+      { q: "16 ÷ 4 = ?", a: ["6", "4", "2"], c: 1, l: 3 },
+      { q: "25 - 10 = ?", a: ["20", "15", "10"], c: 1, l: 3 },
+      { q: "7 × 5 = ?", a: ["35", "40", "30"], c: 0, l: 3 },
+      { q: "21 ÷ 3 = ?", a: ["8", "7", "6"], c: 1, l: 3 },
+      { q: "13 + 7 = ?", a: ["22", "18", "20"], c: 2, l: 3 },
 
-      // УРОВЕНЬ 5
-      { q: "11 × 3 = ?", a: ["33", "30", "36"], c: 0, l: 5 },
-      { q: "48 ÷ 6 = ?", a: ["7", "8", "9"], c: 1, l: 5 },
-      { q: "27 + 14 = ?", a: ["40", "41", "42"], c: 1, l: 5 },
-      { q: "50 - 23 = ?", a: ["26", "27", "28"], c: 1, l: 5 },
-      { q: "8 × 7 = ?", a: ["54", "56", "58"], c: 1, l: 5 },
-      { q: "81 ÷ 9 = ?", a: ["8", "9", "10"], c: 1, l: 5 },
-      { q: "19 + 17 = ?", a: ["35", "36", "37"], c: 1, l: 5 },
-      { q: "60 - 25 = ?", a: ["34", "35", "36"], c: 1, l: 5 },
-      { q: "6 × 9 = ?", a: ["52", "54", "56"], c: 1, l: 5 },
-      { q: "72 ÷ 8 = ?", a: ["8", "9", "10"], c: 1, l: 5 }
+      // ===== УРОВЕНЬ 4 =====
+      { q: "12 × 3 = ?", a: ["42", "36", "30"], c: 1, l: 4 },
+      { q: "40 ÷ 5 = ?", a: ["10", "8", "6"], c: 1, l: 4 },
+      { q: "28 + 14 = ?", a: ["44", "40", "42"], c: 2, l: 4 },
+      { q: "50 - 25 = ?", a: ["30", "25", "20"], c: 1, l: 4 },
+      { q: "9 × 6 = ?", a: ["60", "54", "48"], c: 1, l: 4 },
+      { q: "72 ÷ 8 = ?", a: ["11", "9", "7"], c: 1, l: 4 },
+      { q: "33 + 17 = ?", a: ["45", "55", "50"], c: 2, l: 4 },
+      { q: "81 ÷ 9 = ?", a: ["10", "8", "9"], c: 2, l: 4 },
+      { q: "45 - 18 = ?", a: ["27", "30", "25"], c: 0, l: 4 },
+      { q: "11 × 4 = ?", a: ["48", "40", "44"], c: 2, l: 4 },
+
+      // ===== УРОВЕНЬ 5 =====
+      { q: "15 × 3 = ?", a: ["60", "45", "30"], c: 1, l: 5 },
+      { q: "100 ÷ 4 = ?", a: ["30", "20", "25"], c: 2, l: 5 },
+      { q: "64 ÷ 8 = ?", a: ["10", "6", "8"], c: 2, l: 5 },
+      { q: "12 × 5 = ?", a: ["70", "60", "50"], c: 1, l: 5 },
+      { q: "90 - 45 = ?", a: ["50", "40", "45"], c: 2, l: 5 },
+      { q: "14 × 4 = ?", a: ["56", "60", "52"], c: 0, l: 5 },
+      { q: "81 + 19 = ?", a: ["110", "90", "100"], c: 2, l: 5 },
+      { q: "144 ÷ 12 = ?", a: ["14", "12", "10"], c: 1, l: 5 },
+      { q: "25 × 4 = ?", a: ["120", "80", "100"], c: 2, l: 5 },
+      { q: "200 ÷ 10 = ?", a: ["30", "10", "20"], c: 2, l: 5 }
+
     ];
-
     // ===== ЛОГИКА МАТЕМАТИКИ =====
     let mathCurrent = 0, mathScore = 0, mathLevel = 1, mathList = [];
 
@@ -580,7 +581,7 @@
       const buttons = document.getElementById("math-answers").children;
       for (let b of buttons) b.disabled = true;
 
-      if (i === q.c) {
+    if(btn.textContent == q.a[q.c]) {
         mathScore++;
         btn.classList.add("correct");
       } else {
@@ -602,13 +603,7 @@
     function nextMathLevel() {
       mathLevel++;
 
-      if (mathLevel > 10) {
-        document.getElementById("math-question").textContent = "🏆 Математика завершена!";
-        document.getElementById("math-answers").innerHTML = "";
-        document.getElementById("math-progress").textContent = "Счёт: " + mathScore;
-        return;
-      }
-
+    
       mathCurrent = 0;
       mathList = shuffle(mathQuestions).filter(q => q.l === mathLevel).slice(0, 10);
       loadMath();
@@ -631,11 +626,115 @@
     let percent = Math.round((correctMath / totalMath) * 100);
 
     console.log("Процент правильных: " + percent + "%");
-function playErrorSound(){
-  let audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
-  audio.play();
-}
+    function playErrorSound() {
+      let audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+      audio.play();
+    }
+    // перемешка массива
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
 
+    // перемешка ответов
+    function shuffleAnswers(question) {
+      let correct = question.a[question.c];
+      let shuffled = shuffle([...question.a]);
+      let newIndex = shuffled.indexOf(correct);
+
+      return {
+        q: question.q,
+        a: shuffled,
+        c: newIndex,
+        l: question.l
+      };
+    }
+    let usedMathQuestions = [];
+
+
+
+
+    function nextMathLevel() {
+      mathLevel++;
+
+    
+      function shuffleAnswers(question) {
+        let answers = question.a.map((text, index) => ({
+          text,
+          correct: index === question.c
+        }));
+
+        // перемешивание
+        answers.sort(() => Math.random() - 0.5);
+
+        // обновляем индексы
+        question.a = answers.map(a => a.text);
+        question.c = answers.findIndex(a => a.correct);
+      }
+      function loadMath() {
+        const q = mathList[mathCurrent];
+
+        // создаём копию ответов + отмечаем правильный
+        let answers = q.a.map((text, index) => ({
+          text: text,
+          correct: index === q.c
+        }));
+
+        // перемешиваем
+        answers.sort(() => Math.random() - 0.5);
+
+        document.getElementById("math-question").textContent =
+          "Уровень " + mathLevel + ": " + q.q;
+
+        const answersDiv = document.getElementById("math-answers");
+        answersDiv.innerHTML = "";
+
+        answers.forEach((ans) => {
+          const btn = document.createElement("button");
+          btn.textContent = ans.text;
+          btn.className = "answer";
+
+          btn.onclick = () => {
+            const buttons = answersDiv.children;
+
+            // блокируем все кнопки
+            for (let b of buttons) b.disabled = true;
+
+            if (ans.correct) {
+              btn.classList.add("correct");
+              mathScore++;
+            } else {
+              btn.classList.add("wrong");
+
+              // подсветить правильный
+              Array.from(buttons).forEach((b, i) => {
+                if (answers[i].correct) b.classList.add("correct");
+              });
+            }
+
+            mathCurrent++;
+
+            setTimeout(() => {
+              if (mathCurrent < mathList.length) {
+                loadMath();
+              } else {
+                nextMathLevel();
+              }
+            }, 700);
+          };
+
+          answersDiv.appendChild(btn);
+        });
+
+        document.getElementById("math-progress").textContent =
+          `Вопрос ${mathCurrent + 1} из ${mathList.length}`;
+      }
+    }
+  
+  
   </script>
 
 </body>
